@@ -1,0 +1,23 @@
+{
+  "name": "books",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "marked": "^14.0.0",
+    "tiny-glob": "^0.2.9",
+    "unslugify": "^1.0.4"
+  },
+  "devDependencies": {
+    "@barelyhuman/prettier-config": "^1.1.0"
+  },
+  "prettier":"@barelyhuman/prettier-config"
+}
