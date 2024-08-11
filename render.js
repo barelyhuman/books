@@ -15,6 +15,23 @@ const unslugify = slug =>
       text => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
     )
 
+const commonHeader = html`
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+  <style>
+    :root {
+      font-family: Inter, sans-serif;
+      font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+    }
+    @supports (font-variation-settings: normal) {
+      :root {
+        font-family: InterVariable, sans-serif;
+      }
+    }
+  </style>
+`
+
 const writeToDist = async (data, path) => {
   await fs.promises.mkdir(dirname(path), { recursive: true })
   await fs.promises.writeFile(path, data, 'utf8')
@@ -63,8 +80,10 @@ const main = async () => {
   , initial-scale=1.0"
         />
         <title>Reaper's Books</title>
+        ${commonHeader}
       </head>
       <body>
+        <h1>Books</h1>
         <ul>
           ${booksBaseNames.map(
             (d, i) => html`<li><a href="/${linkify(books[i])}">${d}</a></li>`
@@ -94,22 +113,37 @@ const main = async () => {
     const data = await marked(await fs.promises.readFile(bookFile, 'utf8'))
 
     const bookTemplate = html`
-      <body>
-        <ul>
-          ${contentIndex
-            .map(
-              d =>
-                html`<li
-                  style="margin-left: ${d.depth}em"
-                  data-depth="${d.depth}"
-                >
-                  <a href="#${d.slug}">${d.text}</a>
-                </li>`
-            )
-            .join('\n')}
-        </ul>
-        <article>${data}</article>
-      </body>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=
+  , initial-scale=1.0"
+          />
+          <title>Reaper's Books</title>
+          ${commonHeader}
+        </head>
+        <body>
+          <section>
+            <h2>Contents</h2>
+            <ul>
+              ${contentIndex
+                .map(
+                  d =>
+                    html`<li
+                      style="margin-left: ${d.depth}em"
+                      data-depth="${d.depth}"
+                    >
+                      <a href="#${d.slug}">${d.text}</a>
+                    </li>`
+                )
+                .join('\n')}
+            </ul>
+            <article>${data}</article>
+          </section>
+        </body>
+      </html>
     `
 
     await writeToDist(bookTemplate, join('dist', book, 'index.html'))
@@ -119,7 +153,10 @@ const main = async () => {
 main()
 
 if (process.argv.slice(2).includes('--dev')) {
-  const watcher = watch(await glob('./**/*.md', { absolute: true }))
+  const watcher = watch([
+    await glob('./**/*.md', { absolute: true }),
+    './render.js',
+  ])
   watcher.on('all', () => {
     main()
   })
