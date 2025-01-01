@@ -1,0 +1,16 @@
+:root {
+  /* modification of the nord light colors  */
+  --dark: #2e3440;
+  --gray: #8c97ac;
+  --light: #e9ecf8;
+  --bg: #fff;
+  --accent: black;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+  font-size: 81.3%; /*13px*/
+  background: var(--bg);
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="title" content="books by reaper.is" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  <body class="bg-zinc-50 text-zinc-600 max-w-3xl mx-auto">
+    <article class="mt-10 p-1 prose prose-zinc">{{.Content}}</article>
+    <script type="importmap">
+      {
+        "imports": {
+          "@twind/core": "https://ga.jspm.io/npm:@twind/core@1.1.3/core.dev.js",
+          "@twind/preset-tailwind": "https://ga.jspm.io/npm:@twind/preset-tailwind@1.1.4/preset-tailwind.dev.js",
+          "@twind/preset-typography": "https://ga.jspm.io/npm:@twind/preset-typography@1.0.7/preset-typography.dev.js"
+        }
+      }
+    </script>
+
+    <!-- ES Module Shims import maps polyfills -->
+    <script
+      async
+      src="https://ga.jspm.io/npm:es-module-shims@1.10.1/dist/es-module-shims.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module">
+      import * as Core from "@twind/core";
+      import * as PresetTailwind from "@twind/preset-tailwind";
+      import * as PresetTypography from "@twind/preset-typography";
+
+      Core.install({
+        presets: [PresetTailwind.default(), PresetTypography.default()],
+      });
+    </script>
+  </body>
+</html>
