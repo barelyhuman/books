@@ -1,8 +1,11 @@
-.PHONY: dev build
+.PHONY: dev build setup
 
+setup:
+	curl -sLf https://goblin.run/github.com/barelyhuman/alvu | PREFIX=./bin sh
+	chmod +x ./bin/alvu
 dev: 
-	alvu -serve -poll 200 -highlight-theme monokai -highlight
+	./bin/alvu -serve -poll 200 -highlight-theme monokai -highlight
 build: 
-	alvu -highlight-theme monokai -highlight
+	./bin/alvu -highlight-theme monokai -highlight
 build.github: 
-	alvu -baseurl /books/ -highlight-theme monokai -highlight
+	./bin/alvu -baseurl /books/ -highlight-theme monokai -highlight
