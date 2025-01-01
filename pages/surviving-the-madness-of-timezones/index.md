@@ -11,3 +11,7 @@
 </li>
 {{end}}
 </ul>
+
+## Support
+
+The book is also available on [Gumroad - Surviving the madness of timezones](https://barelyreaper.gumroad.com/l/surviving-the-madness-of-timezones) in ePub and PDF formats
