@@ -1,3 +1,5 @@
+# Index
+
 <ul class="list-disc">
 {{$baseurl := .Meta.BaseURL}}
 {{range .Data.content}}
