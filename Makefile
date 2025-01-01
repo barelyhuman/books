@@ -1,6 +1,7 @@
 .PHONY: dev build setup
 
 setup:
+	mkdir -p ./bin
 	curl -sLf https://goblin.run/github.com/barelyhuman/alvu | PREFIX=./bin sh
 	chmod +x ./bin/alvu
 dev: 
