@@ -4,6 +4,26 @@ local yaml = require("yaml")
 local utils = require("lib.utils")
 local Lib = {}
 
+function Lib.get_meta_for_file(file)
+	local meta = {}
+	local name = string.gsub(file, ".md", "")
+	name = string.gsub(name, ".html", "")
+	local filecontent = utils.getfiledata(file)
+	if filecontent then
+		local match = strings.split(filecontent, "---")
+
+		if match[2] then
+			local frontmatterParsed = yaml.decode(match[2])
+
+			meta = {
+				slug = name,
+				title = frontmatterParsed.title,
+			}
+		end
+	end
+	return meta
+end
+
 function Lib.get_meta_for_path(basePath)
 	local files = alvu.files(basePath)
 
@@ -29,7 +49,7 @@ function Lib.get_meta_for_path(basePath)
 			end
 		end
 	end
-	
+
 	return meta
 end
 

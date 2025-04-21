@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -38,6 +38,13 @@
     class="!block bg-zinc-50 text-zinc-600 max-w-3xl mx-auto"
     style="display: none"
   >
-    <article class="mt-10 p-1 prose prose-zinc">{{.Content}}</article>
+    <article class="mt-10 w-full min-w-full p-1 prose prose-zinc">{{.Content}}</article>
+    <section class="my-10 flex justify-between items-center gap-2">
+      {{ if .Data.prev }}
+    <a class="text-zinc-500 hover:text-zinc-600 hover:underline hover:underline-offset-4 text-sm" href="{{.Meta.BaseURL}}{{.Data.prev.slug}}">&larr; {{.Data.prev.title}}</p>
+    {{end}} {{ if .Data.next }}
+    <a class="text-zinc-500 hover:text-zinc-600 hover:underline hover:underline-offset-4 text-sm" href="{{.Meta.BaseURL}}{{.Data.next.slug}}"> {{.Data.next.title}} &rarr;</p>
+    {{end}}
+    </section>
   </body>
 </html>

@@ -10,8 +10,8 @@ local basePath = "pages/surviving-the-madness-of-timezones"
 
 function Writer(filedata)
 	return json.encode({
-            data = {
-			content = meta.get_meta_for_path(basePath)
+		data = {
+			content = meta.get_meta_for_path(basePath),
 		},
 	})
 end
